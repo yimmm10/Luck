@@ -1,6 +1,8 @@
+"use strict";
+
 // Rider-Waite-Smith Tarot Card Images (Public Domain, 1909)
 // Source: Wikimedia Commons
-const TAROT_IMAGES = [
+const TAROT_IMAGES = Object.freeze([
     "assets/tarot/card_00.jpg",
     "assets/tarot/card_01.jpg",
     "assets/tarot/card_02.jpg",
@@ -23,4 +25,4 @@ const TAROT_IMAGES = [
     "assets/tarot/card_19.jpg",
     "assets/tarot/card_20.jpg",
     "assets/tarot/card_21.jpg"
-];
+]);

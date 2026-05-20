@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Tarot - ดูดวงไพ่ยิปซีออนไลน์สไตล์จักรวาล</title>
+    <title>Tarot Card - เปิดประตูสู่คำทำนายแห่งโชคชะตา</title>
     <meta name="description" content="สัมผัสประสบการณ์ดูดวงไพ่ยิปซีแบบโต้ตอบ 3 มิติ ด้วยคำทำนายภาษาไทยที่แม่นยำและละเอียด ธีมห้วงอวกาศลึกลับเสมือนจริง">
+    
+    <!-- Security Headers (Meta Tags) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Prompt:wght@300;400;500;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FontAwesome for Icons with SRI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="css/styles.css?v=4">
     <link rel="icon" href="data:,">
 </head>
 <body>
@@ -30,7 +36,7 @@
         <header class="app-header">
             <div class="logo">
                 <i class="fa-solid fa-wand-magic-sparkles magic-icon"></i>
-                <h1>COSMIC TAROT</h1>
+                <h1>TAROT CARD</h1>
             </div>
             <p class="subtitle">เปิดประตูสู่จิตวิญญาณและความลี้ลับของดวงดาว</p>
             
@@ -176,13 +182,13 @@
 
         <!-- Footer -->
         <footer class="app-footer">
-            <p>© 2026 Cosmic Tarot. จัดทำขึ้นเพื่อความบันเทิงและการชี้แนะแนวทางชีวิตเชิงบวก</p>
+            <p>© 2026 Tarot Card. จัดทำขึ้นเพื่อความบันเทิงและการชี้แนะแนวทางชีวิตเชิงบวก</p>
         </footer>
     </div>
 
     <!-- Scripts -->
-    <script src="images.js"></script>
-    <script src="cards.js"></script>
-    <script src="app.js"></script>
+    <script src="js/images.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
