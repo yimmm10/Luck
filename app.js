@@ -620,13 +620,13 @@ function showResults() {
         const details = isReversed ? tarotCard.reversed : tarotCard.upright;
         
         // Position Labels
-        let positionLabel = 'คำแนะนำทั่วไป';
+        let positionLabel = 'คำชี้แนะจากสรวงสวรรค์';
         if (selectedMode === 'triple') {
-            if (index === 0) positionLabel = 'ใบที่ 1: อดีต (Past)';
-            if (index === 1) positionLabel = 'ใบที่ 2: ปัจจุบัน (Present)';
-            if (index === 2) positionLabel = 'ใบที่ 3: อนาคต (Future)';
+            if (index === 0) positionLabel = 'ปฐมบท: อดีตที่ผ่านมา (The Past)';
+            if (index === 1) positionLabel = 'ปัจจุบันกาล: สิ่งที่เผชิญ (The Present)';
+            if (index === 2) positionLabel = 'ปัจฉิมบท: อนาคตที่กำลังอุบัติ (The Future)';
         } else {
-            positionLabel = 'ไพ่แนะนำประจำวันของคุณ (Daily Guidance)';
+            positionLabel = 'อักขระชี้ทางชีวิต (The Core Guidance)';
         }
 
         const directionLabel = isReversed ? 'กลับหัว (Reversed)' : 'หัวตั้ง (Upright)';

@@ -401,17 +401,18 @@ body {
     perspective: 1200px;
     cursor: pointer;
     user-select: none;
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, margin-bottom 0.4s ease;
-    will-change: transform, box-shadow;
+    /* Remove transition for margin-bottom to stabilize */
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0s;
+    will-change: transform;
 }
 
 .card-item:hover, .card-item:active {
     z-index: 2000 !important;
-    margin-bottom: 60px;
 }
 
+/* Apply the "lift" only to the inner part so the parent's hover area remains stable */
 .card-item:hover .card-inner, .card-item:active .card-inner {
-    transform: scale(1.25) translateY(-10px);
+    transform: scale(1.25) translateY(-60px);
     box-shadow: 0 25px 50px var(--color-gold), 0 0 30px rgba(255,255,255,0.2);
 }
 
@@ -420,7 +421,7 @@ body {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
     border-radius: 14px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
@@ -787,6 +788,25 @@ body {
     justify-content: center;
     padding-top: 30px;
     margin-bottom: 20px;
+}
+
+/* Card slot positioning fix */
+.card-slot .card-item {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+    margin: 0 !important;
+    z-index: 10 !important;
+}
+
+.card-slot .card-item:hover .card-inner {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 15px 30px var(--color-gold-glow);
 }
 
 /* Animations */
