@@ -2,177 +2,158 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarot Card - เปิดประตูสู่คำทำนายแห่งโชคชะตา</title>
-    <meta name="description" content="สัมผัสประสบการณ์ดูดวงไพ่ยิปซีแบบโต้ตอบ 3 มิติ ด้วยคำทำนายภาษาไทยที่แม่นยำและละเอียด ธีมห้วงอวกาศลึกลับเสมือนจริง">
-    
-    <!-- Security Headers (Meta Tags) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Cosmic Tarot — ดูดวงไพ่ยิปซีจักรวาล</title>
+    <meta name="description" content="สัมผัสประสบการณ์ดูดวงไพ่ยิปซีแบบโต้ตอบ ด้วยคำทำนายภาษาไทยเฉพาะด้าน ธีมห้วงอวกาศลึกลับ">
+    <!-- Security: Content-Security-Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="no-referrer">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Prompt:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Icons with SRI -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=4">
-    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="src/css/styles.css">
 </head>
 <body>
-    <!-- Background Cosmic Particles Canvas -->
-    <canvas id="starsCanvas"></canvas>
-    
-    <!-- Outer Glow Overlay -->
-    <div class="nebula-overlay"></div>
+    <!-- Animated Background -->
+    <canvas id="starsCanvas" aria-hidden="true"></canvas>
+    <div class="nebula-overlay" aria-hidden="true"></div>
 
     <div class="app-container">
         <!-- Header -->
         <header class="app-header">
-            <div class="logo">
-                <i class="fa-solid fa-wand-magic-sparkles magic-icon"></i>
-                <h1>TAROT CARD</h1>
+            <div class="logo-wrap">
+                <div class="logo-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div class="logo-text">
+                    <h1>COSMIC TAROT</h1>
+                    <p class="subtitle">เปิดประตูสู่ความลี้ลับแห่งดวงดาว</p>
+                </div>
             </div>
-            <p class="subtitle">เปิดประตูสู่จิตวิญญาณและความลี้ลับของดวงดาว</p>
-            
-            <div class="controls-panel">
-                <button id="soundToggle" class="control-btn" title="เปิด/ปิดเสียงเอฟเฟกต์">
-                    <i class="fa-solid fa-volume-high"></i>
-                </button>
-            </div>
+            <button id="soundToggle" class="icon-btn" title="เปิด/ปิดเสียง" aria-label="toggle sound">
+                <i class="fa-solid fa-volume-high"></i>
+            </button>
         </header>
 
-        <!-- Main Content Area -->
-        <main class="main-content">
-            
-            <!-- Screen 1: Mode Selection -->
-            <section id="modeSelection" class="view-section active">
-                <div class="intro-card glass-panel">
-                    <h2>อักขระแห่งโชคชะตา</h2>
-                    <p class="intro-desc">น้อมจิตให้สงบ ตั้งสมาธิถึงสิ่งที่ท่านปรารถนาจะหยั่งรู้ แล้วเลือกวิถีแห่งการทำนายด้านล่าง</p>
-                    
-                    <!-- Mode Selector -->
-                    <div class="mode-selector-container">
-                        <p class="selector-label">เลือกรูปแบบการทำนาย</p>
+        <main class="main-content" role="main">
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!--  SCREEN 1 · CATEGORY & MODE SELECTION      -->
+            <!-- ═══════════════════════════════════════════ -->
+            <section id="screenHome" class="view active" aria-labelledby="homeTitle">
+                <div class="glass-panel home-panel">
+                    <h2 id="homeTitle" class="section-title">เลือกหัวข้อที่ต้องการคำทำนาย</h2>
+                    <p class="section-desc">ทำจิตใจให้สงบ ตั้งสมาธิ แล้วเลือกเรื่องที่อยู่ในใจคุณ</p>
+
+                    <!-- Category Grid -->
+                    <div class="category-grid" role="group" aria-label="หัวข้อการทำนาย">
+                        <button class="cat-card" data-topic="love" aria-label="ความรัก">
+                            <div class="cat-icon"><i class="fa-solid fa-heart"></i></div>
+                            <div class="cat-name">ความรัก</div>
+                            <div class="cat-sub">Love &amp; Relationship</div>
+                        </button>
+                        <button class="cat-card" data-topic="work" aria-label="การงาน">
+                            <div class="cat-icon"><i class="fa-solid fa-briefcase"></i></div>
+                            <div class="cat-name">การงาน</div>
+                            <div class="cat-sub">Career &amp; Work</div>
+                        </button>
+                        <button class="cat-card" data-topic="finance" aria-label="การเงิน">
+                            <div class="cat-icon"><i class="fa-solid fa-coins"></i></div>
+                            <div class="cat-name">การเงิน</div>
+                            <div class="cat-sub">Finance &amp; Wealth</div>
+                        </button>
+                        <button class="cat-card" data-topic="health" aria-label="สุขภาพ">
+                            <div class="cat-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                            <div class="cat-name">สุขภาพ</div>
+                            <div class="cat-sub">Health &amp; Wellbeing</div>
+                        </button>
+                    </div>
+
+                    <!-- Mode Selector (shown after category picked) -->
+                    <div id="modeSelector" class="mode-selector hidden" role="group" aria-label="จำนวนไพ่">
+                        <p class="mode-label">เลือกจำนวนไพ่</p>
                         <div class="mode-buttons">
                             <button class="mode-btn active" data-mode="single">
-                                <i class="fa-solid fa-clone"></i>
-                                <span>ทำนาย 1 ใบ</span>
-                                <small>เน้นคำแนะนำรายวัน</small>
+                                <span class="mode-num">1</span>
+                                <span class="mode-desc">ใบ — คำแนะนำ</span>
                             </button>
                             <button class="mode-btn" data-mode="triple">
-                                <div class="triple-icons-stack">
-                                    <i class="fa-solid fa-clone"></i>
-                                    <i class="fa-solid fa-clone"></i>
-                                    <i class="fa-solid fa-clone"></i>
-                                </div>
-                                <span>ทำนาย 3 ใบ</span>
-                                <small>อดีต / ปัจจุบัน / อนาคต</small>
+                                <span class="mode-num">3</span>
+                                <span class="mode-desc">ใบ — อดีต/ปัจจุบัน/อนาคต</span>
                             </button>
                         </div>
-                    </div>
-                    
-                    <!-- Feature Menu Container -->
-                    <div class="feature-menu-container">
-                        <p class="selector-label">เลือกเรื่องที่ต้องการหยั่งรู้</p>
-                        <div class="feature-menu-scroll">
-                            <div class="feature-item" data-topic="love" data-mode="triple">
-                                <div class="feature-icon"><i class="fa-solid fa-heart"></i></div>
-                                <span>ความรัก</span>
-                            </div>
-                            <div class="feature-item" data-topic="education" data-mode="triple">
-                                <div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                                <span>การเรียน</span>
-                            </div>
-                            <div class="feature-item" data-topic="work" data-mode="triple">
-                                <div class="feature-icon"><i class="fa-solid fa-briefcase"></i></div>
-                                <span>การงาน</span>
-                            </div>
-                            <div class="feature-item" data-topic="finance" data-mode="triple">
-                                <div class="feature-icon"><i class="fa-solid fa-sack-dollar"></i></div>
-                                <span>การเงิน</span>
-                            </div>
-                            <div class="feature-item" data-topic="health" data-mode="triple">
-                                <div class="feature-icon"><i class="fa-solid fa-notes-medical"></i></div>
-                                <span>สุขภาพ</span>
-                            </div>
-                            <div class="feature-item" data-topic="fortune" data-mode="triple">
-                                <div class="feature-icon"><i class="fa-solid fa-percent"></i></div>
-                                <span>โชคลาภ</span>
-                            </div>
-                        </div>
+                        <button id="btnStartReading" class="btn btn-primary">
+                            <i class="fa-solid fa-star"></i> เริ่มการทำนาย
+                        </button>
                     </div>
                 </div>
             </section>
 
-            <!-- Screen 2: Interaction Board (Shuffling and Drawing) -->
-            <section id="boardView" class="view-section">
-                <div class="board-header">
-                    <button id="btnBackToModes" class="btn btn-text">
-                        <i class="fa-solid fa-arrow-left"></i> ย้อนกลับไปเลือกโหมด
+            <!-- ═══════════════════════════════════════════ -->
+            <!--  SCREEN 2 · BOARD (SHUFFLE + DRAW)         -->
+            <!-- ═══════════════════════════════════════════ -->
+            <section id="screenBoard" class="view" aria-labelledby="boardTitle">
+                <div class="board-topbar">
+                    <button id="btnBack" class="btn btn-ghost">
+                        <i class="fa-solid fa-chevron-left"></i> ย้อนกลับ
                     </button>
-                    <div class="status-indicator">
-                        <span id="instructionText">กรุณากดปุ่ม "สับไพ่" เพื่อเริ่มต้น</span>
+                    <div id="boardStatus" class="board-status" aria-live="polite">
+                        กดปุ่มสับไพ่เพื่อเริ่มต้น
                     </div>
+                    <div id="topicBadge" class="topic-badge"></div>
                 </div>
 
-                <!-- Selected Cards Slots Area -->
-                <div id="selectedSlotsContainer" class="selected-slots-container">
-                    <div id="selectedSlots" class="selected-slots">
-                        <!-- Slots generated dynamically in JS -->
-                    </div>
+                <!-- Selected card slots -->
+                <div id="slotsContainer" class="slots-container hidden">
+                    <div id="slotsRow" class="slots-row"></div>
                 </div>
 
-                <!-- Deck Shuffling Scene -->
-                <div id="deckContainer" class="deck-container">
-                    <div id="deckPile" class="deck-pile">
-                        <!-- Cards generated via JS will be stacked here initially -->
-                    </div>
+                <!-- Deck pile -->
+                <div id="deckZone" class="deck-zone">
+                    <div id="deckPile" class="deck-pile"></div>
                 </div>
 
-                <!-- Fan layout for drawing cards -->
-                <div id="fanContainer" class="fan-container-outer hidden">
-                    <div id="cardFan" class="card-fan">
-                        <!-- Cards will spread out here in an arc -->
-                    </div>
+                <!-- Fan spread -->
+                <div id="fanZone" class="fan-zone hidden">
+                    <div id="cardFan" class="card-fan"></div>
                 </div>
 
-                <!-- Action Button Center -->
-                <div class="action-container">
+                <!-- Actions -->
+                <div class="board-actions">
                     <button id="btnShuffle" class="btn btn-glow">
                         <i class="fa-solid fa-rotate"></i> สับไพ่แห่งโชคชะตา
                     </button>
-                    <button id="btnConfirmReveal" class="btn btn-glow btn-success hidden">
+                    <button id="btnReveal" class="btn btn-reveal hidden">
                         <i class="fa-solid fa-eye"></i> เปิดเผยคำทำนาย
                     </button>
                 </div>
             </section>
 
-            <!-- Screen 3: Results Display -->
-            <section id="resultsView" class="view-section">
-                <div class="results-container">
-                    <h2 class="results-title">ผลการทำนายของคุณ</h2>
-                    
-                    <!-- Drawn Cards Layout -->
-                    <div id="resultsGrid" class="results-grid">
-                        <!-- Drawn cards will be displayed here with their details -->
+            <!-- ═══════════════════════════════════════════ -->
+            <!--  SCREEN 3 · RESULTS                        -->
+            <!-- ═══════════════════════════════════════════ -->
+            <section id="screenResults" class="view" aria-labelledby="resultsTitle">
+                <div class="results-wrap">
+                    <h2 id="resultsTitle" class="results-title">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span id="resultsTitleText">ผลการทำนาย</span>
+                    </h2>
+
+                    <div id="resultsGrid" class="results-grid"></div>
+
+                    <div id="synthPanel" class="synth-panel glass-panel hidden">
+                        <h3><i class="fa-solid fa-scroll"></i> บทสรุปจากดวงดาว</h3>
+                        <p id="synthText" class="synth-text"></p>
                     </div>
 
-                    <!-- Guidance Card Summaries -->
-                    <div class="overall-guidance glass-panel">
-                        <h3><i class="fa-solid fa-wand-magic-sparkles text-gold"></i> คำแนะนำและข้อคิดจากไพ่</h3>
-                        <p id="overallSummaryText">ไพ่ยิปซีชี้ทางให้คุณดำเนินชีวิตด้วยความรอบคอบและศรัทธาในตนเอง</p>
-                    </div>
-
-                    <!-- Reset Button -->
                     <div class="results-footer">
-                        <button id="btnRestart" class="btn btn-glow">
-                            <i class="fa-solid fa-rotate-right"></i> น้อมรับคำทำนายและเริ่มใหม่
+                        <button id="btnRestart" class="btn btn-primary">
+                            <i class="fa-solid fa-rotate-right"></i> ทำนายใหม่อีกครั้ง
                         </button>
                     </div>
                 </div>
@@ -180,15 +161,13 @@
 
         </main>
 
-        <!-- Footer -->
         <footer class="app-footer">
-            <p>© 2026 Tarot Card. จัดทำขึ้นเพื่อความบันเทิงและการชี้แนะแนวทางชีวิตเชิงบวก</p>
+            <p>© 2026 Cosmic Tarot · เพื่อความบันเทิงและแรงบันดาลใจในชีวิต</p>
         </footer>
     </div>
 
     <!-- Scripts -->
-    <script src="js/images.js"></script>
-    <script src="js/cards.js"></script>
-    <script src="js/app.js"></script>
+    <script src="src/js/cards.js"></script>
+    <script src="src/js/app.js"></script>
 </body>
 </html>
